@@ -1,101 +1,93 @@
-import Image from "next/image";
+"use client";
+import Head from 'next/head';
+import { useEffect, useState } from 'react';
+import styles from './globals.css'; // Optional: Use CSS modules for styling
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    const [greeting, setGreeting] = useState('');
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    useEffect(() => {
+        const today = new Date();
+        const hour = today.getHours();
+        let greetingMessage;
+
+        if (hour < 12) {
+            greetingMessage = 'Good morning!';
+        } else if (hour < 18) {
+            greetingMessage = 'Good afternoon!';
+        } else {
+            greetingMessage = 'Good evening!';
+        }
+
+        setGreeting(greetingMessage);
+    }, []);
+
+    return (
+        <div>
+            <Head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta name="description" content="Page for Madison Swain's personal website." />
+                <meta name="keywords" content="information literacy, information tools, personal, resume, about" />
+                <title>Madison Swain Website</title>
+                <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+            </Head>
+            <header style={{ backgroundColor: 'rgb(124, 60, 156)', color: 'white', padding: '2rem', textAlign: 'center', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
+                <h1>Welcome to Madison's Personal Website</h1>
+                <p>Contact: 
+                    <a href="mailto:swainm@unc.edu">swainm@unc.edu</a>
+                </p>
+                <nav>
+                    <a href="#about">About Me</a> | 
+                    <a href="#classes">Classes</a> | 
+                    <a href="#interests">Interests</a>
+                </nav>
+            </header>
+
+            <h2>{greeting}</h2> {/* Greeting will appear here. */}
+
+            {/* About Section */}
+            <section id="about">
+                <h2>About Me</h2>
+                <div style={{ textAlign: 'center' }}>
+                    <img src="/images/Headshot_MadiSwain.jpg" alt="Madison Swain" style={{ maxWidth: '200px', height: 'auto', borderRadius: '50%' }} />
+                    <p>A third-year student at the University of North Carolina at Chapel Hill, double majoring in Advertising and Public Relations at the Hussman School of Journalism and Media and Information Science, with a Certificate in Business Communication.</p>
+                    <a href="/resumes/Resume_MadiSwain.pdf" target="_blank">View my Resume (PDF)</a>
+                </div>
+            </section>
+
+            {/* Classes Section */}
+            <section id="classes">
+                <h2>Current Classes</h2>
+                <ul>
+                    <li><a href="https://ils.unc.edu/courses/2024_fall/inls161_001/s01.syllabus.html">INLS 161</a></li>
+                    <li><a href="https://ils.unc.edu/courses/2024_fall/inls201_001/">INLS 201</a></li>
+                    <li><a href="https://uncch.instructure.com/courses/67160">MEJO 137</a></li>
+                    <li><a href="https://uncch.instructure.com/courses/67195">MEJO 153</a></li>
+                    <li><a href="https://uncch.instructure.com/courses/67433">MEJO 467</a></li>
+                </ul>
+            </section>
+
+            {/* Interests Section */}
+            <section id="interests">
+                <h2>Interests</h2>
+                <ol>
+                    <li>The Book Thief</li>
+                    <li>Pride and Prejudice</li>
+                    <li>Harry Potter and the Deathly Hallows</li>
+                    <li>The Great Gatsby</li>
+                    <li>Canon of Sherlock Holmes</li>
+                    <li>Rebecca</li>
+                    <li>The Secret History</li>
+                    <li>Gone Girl</li>
+                    <li>Lord of the Rings</li>
+                    <li>All the Light We Cannot See</li>
+                </ol>
+            </section>
+
+            <footer>
+                <p>Last updated: {new Date().toLocaleDateString()}</p>
+            </footer>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    );
 }

@@ -1,27 +1,76 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --primary-bg-color: #333;
+  --primary-text--color: #fff;
+  --accent-color: #3498db;
+  --background-color:#f4f4f4;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  line-height: 1.6;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+header {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text--color);
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  background-color: var(--accent-color);
+  list-style-type: none;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  }
+  
+nav ul li {
+  margin: 0 20px;
+  }
+  
+nav ul li a {
+  color: var(--primary-text--color);
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  transition: background-color 0.3s ease;
+  }
+
+nav ul li a:hover {
+  background-color: var(--primary-bg-color);
+  border-radius: 5px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text--color);
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.profile-image {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+      flex-direction: column;
+  }
+  nav ul li {
+      margin: 10px 0;
   }
 }
